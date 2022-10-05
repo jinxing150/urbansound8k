@@ -1,0 +1,150 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "collapsed_sections": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/jinxing150/test_repo/blob/main/Resizing%20of%20Spectograms\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "fYYLv6WbhF1C"
+      },
+      "outputs": [],
+      "source": [
+        "import os\n",
+        "import cv2\n",
+        "import numpy as np\n",
+        "from os import listdir\n",
+        "from os.path import isfile, join\n",
+        "from pathlib import Path\n",
+        "import argparse\n",
+        "import numpy\n",
+        "import matplotlib.pyplot as plt\n",
+        "from os import listdir\n",
+        "from matplotlib import image\n",
+        "from PIL import Image\n",
+        "import pandas as pd"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!apt-get -qq install -y libsm6 libxext6 && pip install -q -U opencv-python\n"
+      ],
+      "metadata": {
+        "id": "jfO3YnEJqoo8"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount(\"/content/drive/\")"
+      ],
+      "metadata": {
+        "id": "jTluRO4TxY9l"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!ls '/content/drive/MyDrive/'"
+      ],
+      "metadata": {
+        "id": "VQrP0fMYzf6w"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!ls '/content/drive/MyDrive/spectrograms'"
+      ],
+      "metadata": {
+        "id": "NnGWAsYRx4_z"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "os.listdir('/content/drive/MyDrive/spectrograms')"
+      ],
+      "metadata": {
+        "id": "dtaYj9Tc0ti0"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive')\n",
+        "\n",
+        "from os import listdir\n",
+        "from matplotlib import image\n",
+        "from PIL import Image\n",
+        "\n",
+        "loaded_images = list()\n",
+        "for filename in listdir('/content/drive/MyDrive/spectrograms'):\n",
+        "  for img in listdir('/content/drive/MyDrive/spectrograms/' + filename):\n",
+        "    img_data = image.imread('/content/drive/MyDrive/spectrograms/'+ filename + '/' + img)\n",
+        "    loaded_images.append(img_data)\n",
+        "    print('> loaded %s %s' % (filename, img_data.shape))\n",
+        "\n",
+        "def resize():\n",
+        "    files = listdir('/content/drive/MyDrive/spectrograms/')\n",
+        "    for item in files:\n",
+        "            image = Image.open(item)\n",
+        "            image.thumbnail((64,64))\n",
+        "            print(image.size)\n",
+        "\n",
+        "resize()"
+      ],
+      "metadata": {
+        "id": "QvqN4OFUyHrn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "hAa6XmhgApGl"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
